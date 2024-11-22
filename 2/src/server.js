@@ -8,9 +8,15 @@ export const data = {
 export default () => {
   const app = fastify();
 
-  // BEGIN (write your solution here)
+// BEGIN (write your solution here)
+  app.get('/phones', async () => {
+    return data.phones;
+  });
 
-  // END
+  app.get('/domains', async () => {
+    return data.domains;
+  });
+// END
 
   return app;
 };
