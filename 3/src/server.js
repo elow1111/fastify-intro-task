@@ -7,20 +7,17 @@ export default () => {
 
   const users = getUsers();
 
-  // BEGIN (write your solution here)
-  app.get('/users', async (request, reply) => {
-    const page = parseInt(request.query.page, 10) || 1;
-    const per = parseInt(request.query.per, 10) || 5;
-
-    if (page < 1 || per < 1) {
-      return reply.status(400).send({ error: 'Page and per must be positive integers' });
-    }
+  app.get('/users', (req, res) => {
+    const page = Number(req.query.page) || 1;
+    const per = Number(req.query.per) || 5;
 
     const startIndex = (page - 1) * per;
-    const paginatedUsers = users.slice(startIndex, startIndex + per);
+    const endIndex = page * per;
 
-    return reply.send(paginatedUsers);
-  // END
+    const answer = users.slice(startIndex, endIndex);
+
+    res.send(answer);
+  });
 
   return app;
 };
