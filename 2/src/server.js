@@ -8,15 +8,14 @@ export const data = {
 export default () => {
   const app = fastify();
 
-// BEGIN (write your solution here)
-  app.get('/phones', async () => {
-    return data.phones;
+  // BEGIN (write your solution here)
+  app.get('/phones', (req, res) => {
+    res.send(data.phones);
   });
-
-  app.get('/domains', async () => {
-    return data.domains;
+  app.get('/domains', (req, res) => {
+    res.send(data.domains);
   });
-// END
+  // END
 
   return app;
 };
